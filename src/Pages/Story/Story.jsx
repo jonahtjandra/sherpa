@@ -4,7 +4,9 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Topbar } from '../../Components/Topbar/Topbar';
 import { Destination } from '../../Components/Destination/Destination';
 import { Restaurant } from '../../Components/Restaurant/Restaurant';
+import { Hotels } from '../../Components/Hotels/Hotels';
 import {getPlacesData} from '../../services/getResto.js';
+import { getHotelsData } from '../../services/getHotels.js';
 
 export const Story = () => {
   mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWh0amFuZHJhIiwiYSI6ImNsMDF2Z2ZmazB5NWgzYmxzNG1iaHZ1YWoifQ.JqWDrSROl2qsQK2WQrFXxw';
@@ -14,10 +16,12 @@ export const Story = () => {
   const [lat, setLat] = useState(41.878113);
   const [zoom, setZoom] = useState(12);
 
-  const [places,setPlaces] = useState([]);
+  const [resto,setResto] = useState([]);
+  const [hotel,setHotels] = useState([]);
   const [coordinates,setCoordinates] = useState({lat:0,lng:0});
 
   const [currentMarkers,setCurrentMarkers] = useState([]);
+  const [currentHotelMarkers,serCurrentHotelMarkers] = useState([]);
   
   // tab logic
   const [toggleState, setToggleState] = useState(1);
@@ -45,26 +49,49 @@ export const Story = () => {
     useEffect(() => {
       if (!map.current) return; // wait for map to initialize
         map.current.on('click', (e) => {
-          // console.log(e.lngLat.lat)
           setCoordinates({lat:e.lngLat.lat,lng:e.lngLat.lng});
-          // console.log(currentMarkers);
-          currentMarkers.forEach((marker) => marker.remove())
-          // console.log(currentMarkers);
+        
         });
-        // console.log(coordinates)
+        
       },[]);
 
     useEffect(() => {
-      // console.log("FUCK")
-      // if (currentMarkers!==null) {
-        // } 
-      getPlacesData(coordinates.lat,coordinates.lng)
-          .then((data)=>{
-            // console.log(data);
-              setPlaces(data);
-          })
+      if (toggleState === 2){
+        currentMarkers.forEach((marker) => marker.remove())
+        currentHotelMarkers.forEach((marker) => marker.remove())
+        getPlacesData(coordinates.lat,coordinates.lng)
+            .then((data)=>{
+              // console.log(data);
+                setResto(data);
+            })
+          }
 
     }, [coordinates]);
+
+    useEffect(() => {
+      if (toggleState === 3){
+        currentHotelMarkers.forEach((marker) => marker.remove())
+        currentMarkers.forEach((marker) => marker.remove())
+        getHotelsData(coordinates.lat,coordinates.lng)
+          .then((data)=>{
+              //console.log(data);
+              setHotels(data);
+          })
+      }
+
+    }, [coordinates]);
+
+    useEffect(() =>{
+      if(toggleState === 3){
+        currentMarkers.forEach((marker) => marker.remove())
+      }
+      else if (toggleState === 2){
+        currentHotelMarkers.forEach((marker) => marker.remove())
+      }
+      else{
+
+      }
+    },[toggleState])
 
   return (
     <div className="story">
@@ -107,17 +134,34 @@ export const Story = () => {
                     className={toggleState === 1 ? "content  active-content" : "content"}
                   >
                     Hello, Overview is not fully built yet 👋
+
+                    
                   </div>
 
                   <div
                     className={toggleState === 2 ? "content  active-content" : "content"}
                   >
                     <div className="places-container">
-                      {places.length == 0 ? "Oops, no restaurants yet. Click on the map to explore 🗺": ""}
-                      {places.map((place)=> {
-                        if (place && place.hours && place.photo && place.num_reviews > 10) {
+                      {resto.length == 0 ? "Oops, no restaurants yet. Click on the map to explore 🗺": ""}
+                      {toggleState === 2 && resto.map((resto)=> {
+                        if (resto && resto.hours && resto.photo && resto.num_reviews > 10 && resto.longitude && resto.latitude) {
                           // return <img src={place.photo.images.large.url} alt="" />
-                          return <Restaurant hours={place.hours.week_ranges} name={place.name} image={place.photo.images.large.url} rating={place.rating} reviews={place.num_reviews} ranking={place.ranking} phone={place.phone} alt="" /> 
+                          const marker = new mapboxgl.Marker({
+                            color: "#0000FF"
+                          })
+                          marker.setLngLat([resto.longitude, resto.latitude])
+                          marker.setPopup(new mapboxgl.Popup().setHTML(resto.name));
+                          marker.addTo(map.current);
+
+                          let newmarkers = currentMarkers;
+                          newmarkers.push(marker);
+                          marker.getElement().addEventListener('click', (e) => { marker.togglePopup(); e.stopPropagation(); }, false);
+                          // console.log(currentMarkers);
+
+                          
+                          // setCurrentMarkers(newmarkers);
+
+                          return <Restaurant hours={resto.hours.week_ranges} name={resto.name} image={resto.photo.images.large.url} rating={resto.rating} reviews={resto.num_reviews} ranking={resto.ranking} phone={resto.phone} alt="" /> 
                         }
                       })}
                     </div>
@@ -125,31 +169,34 @@ export const Story = () => {
                   <div
                     className={toggleState === 3 ? "content  active-content" : "content"}
                   >
-                    Hello, Accomodation is not fully built yet 👋
+                     <div className="places-container">
+                      {hotel.length == 0 ? "Oops, no restaurants yet. Click on the map to explore 🗺": ""}
+                      {toggleState === 3 && map.current.on('click') && hotel.map((hotel)=> {
+                        if (hotel && hotel.photo && hotel.num_reviews > 10 && hotel.longitude && hotel.latitude) {
+                          // return <img src={place.photo.images.large.url} alt="" />
+                          const markerhotel = new mapboxgl.Marker({
+                            color: "#FF0000"
+                          })
+                          markerhotel.setLngLat([hotel.longitude, hotel.latitude])
+                          markerhotel.setPopup(new mapboxgl.Popup().setHTML(hotel.name));
+                          markerhotel.addTo(map.current);
+
+                          let newhotelmarkers = currentHotelMarkers;
+                          newhotelmarkers.push(markerhotel);
+                          markerhotel.getElement().addEventListener('click', (e) => { markerhotel.togglePopup(); e.stopPropagation(); }, false);
+                          // console.log(currentMarkers);
+
+                          
+                          // setCurrentMarkers(newmarkers);
+
+                          return <Hotels name={hotel.name} image={hotel.photo.images.large.url} rating={hotel.rating} reviews={hotel.num_reviews} ranking={hotel.ranking} alt="" /> 
+                        }
+                      })}
+                    </div>
                   </div>
                 </div>
               <div className="places-container">
-                {places.map((place)=> {
-                  if (place && place.hours && place.photo && place.num_reviews > 10 && place.longitude && place.latitude) {
-                    // return <img src={place.photo.images.large.url} alt="" />
-                    var marker = new mapboxgl.Marker({
-                      color: "#FFFFFF"
-                    })
-                    marker.setLngLat([place.longitude, place.latitude])
-                    marker.setPopup(new mapboxgl.Popup().setHTML(place.name));
-                    marker.addTo(map.current);
-
-                    let newmarkers = currentMarkers;
-                    newmarkers.push(marker);
-                    marker.getElement().addEventListener('click', (e) => { marker.togglePopup(); e.stopPropagation(); }, false);
-                    // console.log(currentMarkers);
-
-                    
-                    // setCurrentMarkers(newmarkers);
-
-                    return <Restaurant hours={place.hours.week_ranges} name={place.name} image={place.photo.images.large.url} rating={place.rating} reviews={place.num_reviews} ranking={place.ranking} phone={place.phone} alt="" /> 
-                  }
-                })}
+                  
               </div>
               {/* <div className="story-destination">Destination Here</div> */}
             </div>

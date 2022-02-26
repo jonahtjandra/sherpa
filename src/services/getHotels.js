@@ -1,12 +1,12 @@
 import axios from 'axios';
 
-const URL= 'https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng'
+const URL= 'https://travel-advisor.p.rapidapi.com/hotels/list-by-latlng'
 
 const options = {
     params: {
       latitude: '12.91285',
       longitude: '100.87808',
-      limit: '30'
+      limit: ''
     },
     headers: {
       'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
@@ -15,13 +15,13 @@ const options = {
   };
 
 
-export const getPlacesData = async(lat,lng) => {
+export const getHotelsData = async(lat,lng) => {
     try {
         const {data: {data}} = await axios.get(URL,{
           params: {
             latitude: lat,
             longitude: lng,
-            limit: '15'
+            limit: '10'
           },
           headers: {
             'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
