@@ -14,14 +14,16 @@ export const About = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
   return (
-    <div className='About' style={{ transform: `translateY(${-0.5 * offsetY}px)` }}>
-      <img src="fireworks.jpg" alt="" className='img1' />
-      <p className='about_text1' style={{ right: `${0}px`, transform: `translateY(${-100 - 0.5 * offsetY}px)` }}>We believe trips are best experienced in stories. At Sherpa we are creating a place for you to find your next adventure.</p>
-
-      <div className="japan-container">
+    <div className='About' /*style={{ transform: `translateY(${-0.5 * offsetY}px)` }}*/>
+      <div className="japan-container" >
         <p className='about_text2'>You can plan the perfect story on one platform and decide if you want to share your story as a guide to the rest of the world 🌎 later on.</p>
         <img src="japan.webp" alt="" className='story_demo' />
       </div>
+
+      <img src="fireworks.jpg" alt="" className='img1' />
+      <p className='about_text1' style={{ right: `${0}px`, transform: `translateY(${400 - 0.5 * offsetY}px)` }}>We believe trips are best experienced in stories. At Sherpa we are creating a place for you to find your next adventure.</p>
+
+      {/* 
       <div className="japan-container">
         <img src="japan.webp" alt="" className='img1' />
         <p className='about_text3'>At Sherpa, we believe trips are best experienced in stories. Sherpa is a place for you to visualize your next story.
@@ -32,7 +34,7 @@ export const About = () => {
           We are also looking to provide Machine Learning services for us to optimize your story, not only giving you the optimized date
           according to weather and price data but also tracking carbon foot print and calculating optimized routes to take between tagged attractions,
           in order for you to maximize and have the best story.</p>
-      </div>
+      </div> */}
 
 
       {/* At Sherpa, we believe trips are best experienced in stories. Sherpa is a place for you to visualize your next story.
