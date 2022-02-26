@@ -1,0 +1,33 @@
+.restaurant {
+  height: 420px;
+  width: 300px;
+  border-bottom: solid;
+  margin: auto;
+}
+
+.rating,
+.ranking,
+.contact,
+.reviews,
+.business-hours {
+  font-size: 12px;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.restaurant-name {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.img {
+  height: 200px;
+  width: 250px;
+  object-fit: cover;
+}
+
+.hours {
+  list-style-type: none;
+}
