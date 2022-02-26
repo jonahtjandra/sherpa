@@ -3,8 +3,7 @@ import mapboxgl from 'mapbox-gl';
 import React, { useRef, useEffect, useState } from 'react';
 import { Topbar } from '../../Components/Topbar/Topbar';
 import { Destination } from '../../Components/Destination/Destination';
-import * as geojson from '../../assets/dummy_data/marker.json'
-
+import { Restaurant } from '../../Components/Restaurant/Restaurant';
 import {getPlacesData} from '../../services/getResto.js';
 
 export const Story = () => {
@@ -17,14 +16,14 @@ export const Story = () => {
 
   const [places,setPlaces] = useState([]);
   const [coordinates,setCoordinates] = useState({lat:0,lng:0});
-
+  
   // useEffect(() => {
-  //   for (const feature of geojson.features) {
+  //   for (const feature of geojson) {
   //     const el = document.createElement('div');
   //     el.className = 'marker';
   //     new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
   //   }
-  // });
+  // })
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -66,7 +65,14 @@ export const Story = () => {
             <input placeholder='find anything you want' className="search-story" />
             <div className="boxView">
               <input placeholder='title here' className="story-destination" />
-              <div className="places-container"></div>
+              <div className="places-container">
+                {places.map((place)=> {
+                  if (place && place.hours && place.photo && place.num_reviews > 10) {
+                    // return <img src={place.photo.images.large.url} alt="" />
+                    return <Restaurant hours={place.hours.week_ranges} name={place.name} image={place.photo.images.large.url} rating={place.rating} reviews={place.num_reviews} ranking={place.ranking} phone={place.phone} alt="" /> 
+                  }
+                })}
+              </div>
               {/* <div className="story-destination">Destination Here</div> */}
             </div>
           </div>

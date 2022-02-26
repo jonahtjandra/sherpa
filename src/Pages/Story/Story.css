@@ -75,5 +75,6 @@
   margin-right: auto;
   /* margin: auto; */
   width: 85%;
+  overflow-y: auto;
   /* background-color: whitesmoke; */
 }
