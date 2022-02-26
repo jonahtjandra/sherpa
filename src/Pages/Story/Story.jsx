@@ -5,7 +5,8 @@ import { Topbar } from '../../Components/Topbar/Topbar';
 import { Destination } from '../../Components/Destination/Destination';
 import * as geojson from '../../assets/dummy_data/marker.json'
 
- 
+import {getPlacesData} from '../../services/getResto';
+
 export const Story = () => {
   mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWh0amFuZHJhIiwiYSI6ImNsMDF2Z2ZmazB5NWgzYmxzNG1iaHZ1YWoifQ.JqWDrSROl2qsQK2WQrFXxw';
   const mapContainer = useRef(null);
@@ -13,6 +14,9 @@ export const Story = () => {
   const [lng, setLng] = useState(-87.629799);
   const [lat, setLat] = useState(41.878113);
   const [zoom, setZoom] = useState(12);
+
+  const [places,setPlaces] = useState([]);
+  const [coordinates,setCoordinates] = useState({lat:0,lng:0});
 
   useEffect(() => {
     for (const feature of geojson.features) {
@@ -31,6 +35,24 @@ export const Story = () => {
         zoom: zoom
       });
     });
+
+    useEffect(() => {
+      if (!map.current) return; // wait for map to initialize
+        map.current.on('click', (e) => {
+          // console.log(e.lngLat.lat)
+          setCoordinates({lat:e.lngLat.lat,lng:e.lngLat.lng});
+        });
+        // console.log(coordinates)
+      },[]);
+
+    useEffect(() => {
+      // console.log("FUCK")
+      getPlacesData(coordinates.lat,coordinates.lng)
+          .then((data)=>{
+            console.log(data);
+              setPlaces(data);
+          })
+    }, [coordinates]);
 
   return (
     <div className="story">
