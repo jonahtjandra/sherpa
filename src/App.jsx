@@ -11,7 +11,7 @@ function App() {
       <Topbar />
       <Home />
       <About />
-      <Destination id="destination" />
+      {/* <Destination id="destination" /> */}
     </div>
   );
 }

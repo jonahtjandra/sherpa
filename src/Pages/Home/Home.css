@@ -32,7 +32,10 @@
   color: white;
   position: relative;
   bottom: 250px;
+  align-items: center;
+  height: 12vh;
 }
+
 .title-img {
   margin-top: 50px;
   width: 1050px;
