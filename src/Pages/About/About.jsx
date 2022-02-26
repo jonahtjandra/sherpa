@@ -12,13 +12,14 @@ export const About = () => {
   }, [])
   return (
     <div className='About'>
-        <img style={{ borderRadius: '15px', transform: `translate(${0.26 * offsetY}px)`}} src="bg.jpeg" alt="" className="bg" />
-         <div className="logo-container" style={{ transform: `translate(-${0.5 * offsetY}px)`}}>
-            <div className="sherpa" style={{ opacity:`${0.2 * (offsetY-900)}%` }}>
-                SHERPA 🐑
-            </div>
-            <div className="spelling">[ sher-puh, shur- ]</div>
+      {/* <img src="japan.webp" alt="" /> */}
+      {/* <img style={{ borderRadius: '15px', transform: `translate(${0.377 * offsetY}px)` }} src="bg.jpeg" alt="" className="bg" />
+      <div className="logo-container" style={{ transform: `translate(-${0.377 * offsetY}px)` }}>
+        <div className="sherpa">
+          SHERPA 🐑
         </div>
+        <div className="spelling">[ sher-puh, shur- ]</div>
+      </div> */}
     </div>
   )
 }

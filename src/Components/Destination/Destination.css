@@ -1,6 +1,7 @@
 .Destination {
   background-color: white;
   padding-bottom: 120px;
+  z-index: 10;
 }
 .title-destination {
   font-size: 45px;
