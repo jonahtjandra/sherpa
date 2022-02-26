@@ -1,3 +1,3 @@
 # Sherpa 🐑
 
-### By: Jonah, Rendy, Allen
+### Developers: Jonah, Rendy, Allen
