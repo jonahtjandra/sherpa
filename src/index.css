@@ -1,0 +1,13 @@
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  overflow-x: hidden;
+}
+
+code {
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+}

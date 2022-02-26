@@ -1,0 +1,19 @@
+.About {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+  margin-left: 50%;
+}
+
+.sherpa {
+  font-size: 65px;
+  font-weight: 700;
+}
+
+.spelling {
+  font-size: 35px;
+  font-weight: 500;
+}

@@ -1,0 +1,146 @@
+.topbar {
+  background-color: white;
+  top: 0;
+  height: 85px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  position: sticky;
+  z-index: 10;
+}
+
+#link {
+  text-decoration: none;
+  color: black;
+}
+
+.search-wrapper {
+  position: relative;
+  right: 11%;
+  bottom: 20px;
+}
+
+.icon {
+  position: absolute;
+  left: 52%;
+  top: 13px;
+}
+
+.searchbar {
+  position: absolute;
+  border-radius: 30px;
+  border-style: solid;
+  border-width: 0.5px;
+  text-align: center;
+  width: 35%;
+  height: 40px;
+  font-size: 15px;
+  transition: box-shadow 0.15s ease-in-out;
+}
+
+.searchbar:focus {
+  outline: none;
+}
+
+.searchbar:hover {
+  -webkit-box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+}
+
+input::placeholder {
+  font-weight: 500;
+  color: black;
+}
+
+input:focus::placeholder {
+  color: transparent;
+}
+
+.logo-wrapper {
+  margin-left: 65px;
+}
+
+.logo {
+  flex: 1;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.search {
+  flex: 3;
+  align-items: center;
+}
+
+#text-wrapper {
+  display: table;
+}
+
+.create-experience {
+  padding: 7px;
+  height: 30px;
+  transition: background-color 0.15s ease-in-out;
+  width: 160px;
+  border-radius: 55px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.create-experience:hover {
+  background-color: rgb(235, 235, 235);
+  /* background-color: rgb(232, 213, 178); */
+}
+
+.topbar-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.profile-pic {
+  height: 35px;
+  width: 35px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.burger {
+  height: 20px;
+  margin-right: 15px;
+}
+
+.profile-nav-wrapper {
+  margin-left: 25px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 7px;
+  border-radius: 20px;
+  transition: background-color 150ms;
+}
+.profile-nav-wrapper:hover {
+  background-color: rgb(235, 235, 235);
+  /* background-color: rgb(232, 213, 178); */
+}
+
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}

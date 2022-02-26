@@ -1,0 +1,51 @@
+.Destination {
+  background-color: white;
+  padding-bottom: 120px;
+}
+.title-destination {
+  font-size: 45px;
+  font-weight: 600;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.cards-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.card1,
+.card2,
+.card3,
+.card4 {
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.2s ease;
+  border-radius: 20px;
+}
+
+.card1:hover,
+.card2:hover,
+.card3:hover,
+.card4:hover {
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 10px 10px 0px rgba(0, 0, 0, 0.5);
+}
+
+.more {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-left: 10px;
+  width: 8%;
+  height: 50px;
+  background-color: rgb(150, 9, 186);
+  font-size: 17px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  border-radius: 40px;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.4);
+}

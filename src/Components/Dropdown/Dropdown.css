@@ -1,0 +1,108 @@
+.dropdown {
+  width: 150px;
+  height: 190px;
+  transform: translateX(-20%);
+  background-color: white;
+  position: absolute;
+  top: 65px;
+  border-radius: 10px;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+.back-icon {
+  width: 15px;
+  height: 15px;
+  /* background-color: rgb(228, 228, 228); */
+  /* background-color: rgb(232, 213, 178); */
+  padding: 6px;
+  border-radius: 50%;
+}
+
+.menu {
+  width: 100%;
+}
+
+.list-button {
+  text-decoration: none;
+  color: black;
+  border-radius: 10px;
+  padding: 7px;
+  list-style-type: none;
+}
+
+.list-item:hover {
+  background-color: rgb(232, 213, 178);
+  cursor: pointer;
+}
+
+.list-item-party:hover {
+  background-color: rgb(183, 121, 204);
+  cursor: pointer;
+}
+
+.divider {
+  width: 80%;
+}
+.list-item-party {
+  padding: 2px;
+  font-weight: 500;
+  width: 100%;
+  font-size: 13px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  transition: background-color 0.2s ease;
+}
+
+.list-item {
+  padding: 2px;
+  font-weight: 500;
+  width: 100%;
+  font-size: 13px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+}
+
+.menu-primary-enter {
+  position: absolute;
+  transform: translateX(-110%);
+}
+
+.menu-primary-enter-active {
+  transform: translateX(0%);
+  transition: all 0.4s ease;
+}
+
+.menu-primary-exit {
+  position: absolute;
+}
+
+.menu-primary-exit-active {
+  transform: translateX(-110%);
+  transition: all 0.4s ease;
+}
+
+.menu-secondary-enter {
+  position: absolute;
+  transform: translateX(110%);
+}
+
+.menu-secondary-enter-active {
+  transform: translateX(0%);
+  transition: all 0.4s ease;
+}
+
+.menu-secondary-exit {
+  position: absolute;
+}
+
+.menu-secondary-exit-active {
+  transform: translateX(110%);
+  transition: all 0.4s ease;
+}
