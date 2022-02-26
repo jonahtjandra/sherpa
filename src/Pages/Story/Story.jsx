@@ -5,7 +5,7 @@ import { Topbar } from '../../Components/Topbar/Topbar';
 import { Destination } from '../../Components/Destination/Destination';
 import * as geojson from '../../assets/dummy_data/marker.json'
 
-import {getPlacesData} from '../../services/getResto';
+import {getPlacesData} from '../../services/getResto.js';
 
 export const Story = () => {
   mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWh0amFuZHJhIiwiYSI6ImNsMDF2Z2ZmazB5NWgzYmxzNG1iaHZ1YWoifQ.JqWDrSROl2qsQK2WQrFXxw';
@@ -18,13 +18,13 @@ export const Story = () => {
   const [places,setPlaces] = useState([]);
   const [coordinates,setCoordinates] = useState({lat:0,lng:0});
 
-  useEffect(() => {
-    for (const feature of geojson.features) {
-      const el = document.createElement('div');
-      el.className = 'marker';
-      new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
-    }
-  })
+  // useEffect(() => {
+  //   for (const feature of geojson.features) {
+  //     const el = document.createElement('div');
+  //     el.className = 'marker';
+  //     new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
+  //   }
+  // });
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
