@@ -16,14 +16,9 @@ export const Story = () => {
 
   const [places,setPlaces] = useState([]);
   const [coordinates,setCoordinates] = useState({lat:0,lng:0});
+
+  const [currentMarkers,setCurrentMarkers] = useState([]);
   
-  // useEffect(() => {
-  //   for (const feature of geojson) {
-  //     const el = document.createElement('div');
-  //     el.className = 'marker';
-  //     new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
-  //   }
-  // })
 
   useEffect(() => {
     if (map.current) return; // initialize map only once
@@ -35,22 +30,30 @@ export const Story = () => {
       });
     });
 
+
+
     useEffect(() => {
       if (!map.current) return; // wait for map to initialize
         map.current.on('click', (e) => {
           // console.log(e.lngLat.lat)
           setCoordinates({lat:e.lngLat.lat,lng:e.lngLat.lng});
+          // console.log(currentMarkers);
+          currentMarkers.forEach((marker) => marker.remove())
+          // console.log(currentMarkers);
         });
         // console.log(coordinates)
       },[]);
 
     useEffect(() => {
       // console.log("FUCK")
+      // if (currentMarkers!==null) {
+        // } 
       getPlacesData(coordinates.lat,coordinates.lng)
           .then((data)=>{
-            console.log(data);
+            // console.log(data);
               setPlaces(data);
           })
+
     }, [coordinates]);
 
   return (
@@ -67,8 +70,23 @@ export const Story = () => {
               <input placeholder='title here' className="story-destination" />
               <div className="places-container">
                 {places.map((place)=> {
-                  if (place && place.hours && place.photo && place.num_reviews > 10) {
+                  if (place && place.hours && place.photo && place.num_reviews > 10 && place.longitude && place.latitude) {
                     // return <img src={place.photo.images.large.url} alt="" />
+                    var marker = new mapboxgl.Marker({
+                      color: "#FFFFFF"
+                    })
+                    marker.setLngLat([place.longitude, place.latitude])
+                    marker.setPopup(new mapboxgl.Popup().setHTML(place.name));
+                    marker.addTo(map.current);
+
+                    let newmarkers = currentMarkers;
+                    newmarkers.push(marker);
+                    marker.getElement().addEventListener('click', (e) => { marker.togglePopup(); e.stopPropagation(); }, false);
+                    // console.log(currentMarkers);
+
+                    
+                    // setCurrentMarkers(newmarkers);
+
                     return <Restaurant hours={place.hours.week_ranges} name={place.name} image={place.photo.images.large.url} rating={place.rating} reviews={place.num_reviews} ranking={place.ranking} phone={place.phone} alt="" /> 
                   }
                 })}
