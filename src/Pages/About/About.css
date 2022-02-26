@@ -4,10 +4,13 @@
   overflow-y: hidden;
   /* transform: translate(0px, -15px); */
   position: relative;
+  top: 0px;
+  transform: translate(0, -5vh);
+  background-color: #ede0d4;
 }
 
 .japan-container {
-  transform: translate(0, -45vh);
+  /* transform: translate(0, -45vh); */
   display: flex;
   height: 100vh;
   align-items: center;
@@ -26,7 +29,7 @@
   font-size: 35px;
   transform: translate(47vw, -50vh);
 
-  color: white;
+  color: #ede0d4;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   ;
@@ -37,10 +40,14 @@
   width: 50vw;
   top: 0px;
   padding: 2.5% 2.5% 2.5% 2.5% ;
+
+  /* transform: translate(0, -10vh); */
+
   line-height: 175%;
   text-align: left;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 35px;
+
   color: black;
   margin-left: 5vw;
 }
@@ -48,7 +55,7 @@
 .story_demo {
   height: 85vh;
   top: 0px;
-  margin-left: 5vw;
+  margin-left: 3vw;
   border-radius: 5%;
   transform: skew(-5deg, 5deg);
   width: auto;

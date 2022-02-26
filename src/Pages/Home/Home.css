@@ -1,7 +1,7 @@
 .home {
   /* background-color: rgb(216, 188, 139); */
   overflow-y: hidden;
-
+  background-color: #ede0d4;
 }
 
 .bg1 {
@@ -28,7 +28,7 @@
 
 .title {
   font-weight: 600;
-  font-size: 45px;
+  font-size: 60px;
   color: white;
   position: relative;
   bottom: 250px;
