@@ -1,13 +1,41 @@
 .home {
-  background-color: rgb(216, 188, 139);
+  /* background-color: rgb(216, 188, 139); */
+  overflow-y: hidden;
+
 }
+
+.bg1 {
+  position: absolute;
+  height: 750px;
+  width: 90em;
+  object-fit: cover;
+  
+}
+
+.girl1 {
+  position: absolute;
+  height: 750px;
+  width: 90em;
+  object-fit: cover;
+}
+
+.rock1 {
+  position: relative;
+  height: 750px;
+  width: 90em;
+  object-fit: cover;
+}
+
 .title {
   font-weight: 600;
   font-size: 45px;
   color: white;
   position: relative;
-  bottom: 180px;
+  bottom: 250px;
+  align-items: center;
+  height: 12vh;
 }
+
 .title-img {
   margin-top: 50px;
   width: 1050px;
@@ -21,5 +49,7 @@
 }
 
 .img-wrapper {
+  overflow: scroll;
+	white-space: nowrap;
   width: 100%;
 }

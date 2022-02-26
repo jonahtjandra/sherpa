@@ -8,10 +8,10 @@ import { Destination } from './Components/Destination/Destination';
 function App() {
   return (
     <div className="App">
-        <Topbar/>
-        <Home />
-        <Destination id="destination"/>
-        <About/>
+      <Topbar />
+      <Home />
+      <About />
+      {/* <Destination id="destination" /> */}
     </div>
   );
 }
