@@ -17,6 +17,9 @@ export const Story = () => {
   const [places,setPlaces] = useState([]);
   const [coordinates,setCoordinates] = useState({lat:0,lng:0});
   
+  // tab logic
+  const [toggleState, setToggleState] = useState(1);
+
   // useEffect(() => {
   //   for (const feature of geojson) {
   //     const el = document.createElement('div');
@@ -45,7 +48,6 @@ export const Story = () => {
       },[]);
 
     useEffect(() => {
-      // console.log("FUCK")
       getPlacesData(coordinates.lat,coordinates.lng)
           .then((data)=>{
             console.log(data);
@@ -65,13 +67,56 @@ export const Story = () => {
             <input placeholder='find anything you want' className="search-story" />
             <div className="boxView">
               <input placeholder='title here' className="story-destination" />
-              <div className="places-container">
-                {places.map((place)=> {
-                  if (place && place.hours && place.photo && place.num_reviews > 10) {
-                    // return <img src={place.photo.images.large.url} alt="" />
-                    return <Restaurant hours={place.hours.week_ranges} name={place.name} image={place.photo.images.large.url} rating={place.rating} reviews={place.num_reviews} ranking={place.ranking} phone={place.phone} alt="" /> 
-                  }
-                })}
+              
+
+              <div className="container-tab">
+                <div className="bloc-tabs">
+                  <button
+                    className={toggleState === 1 ? "tabs active-tabs" : "tabs"}
+                    onClick={() => setToggleState(1)}
+                  >
+                    Overview
+                  </button>
+                  <button
+                    className={toggleState === 2 ? "tabs active-tabs" : "tabs"}
+                    onClick={() => setToggleState(2)}
+                  >
+                    Restaurants
+                  </button>
+                  <button
+                    className={toggleState === 3 ? "tabs active-tabs" : "tabs"}
+                    onClick={() => setToggleState(3)}
+                  >
+                    Accomodation
+                  </button>
+                </div>
+
+                <div className="content-tabs">
+                  <div
+                    className={toggleState === 1 ? "content  active-content" : "content"}
+                  >
+                    Hello, Overview is not fully built yet 👋
+                  </div>
+
+                  <div
+                    className={toggleState === 2 ? "content  active-content" : "content"}
+                  >
+                    <div className="places-container">
+                      {places.length == 0 ? "Oops, no restaurants yet. Click on the map to explore 🗺": ""}
+                      {places.map((place)=> {
+                        if (place && place.hours && place.photo && place.num_reviews > 10) {
+                          // return <img src={place.photo.images.large.url} alt="" />
+                          return <Restaurant hours={place.hours.week_ranges} name={place.name} image={place.photo.images.large.url} rating={place.rating} reviews={place.num_reviews} ranking={place.ranking} phone={place.phone} alt="" /> 
+                        }
+                      })}
+                    </div>
+                  </div>
+                  <div
+                    className={toggleState === 3 ? "content  active-content" : "content"}
+                  >
+                    Hello, Accomodation is not fully built yet 👋
+                  </div>
+                </div>
               </div>
               {/* <div className="story-destination">Destination Here</div> */}
             </div>

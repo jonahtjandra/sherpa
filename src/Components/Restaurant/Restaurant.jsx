@@ -3,29 +3,39 @@ import './Restaurant.css'
 
 export const Restaurant = (props) => {
     function getHours(openTime, closeTime) {
-        const open_hr = (openTime/60) % 24
+        const open_hr24 = Math.floor(openTime/60) % 24
         const open_min = (openTime/60 - Math.floor(openTime/60))*60
-        const close_hr = (closeTime/60) % 24
+        const close_hr24 = Math.floor(closeTime/60) % 24
         const close_min = (closeTime/60 - Math.floor(closeTime/60))*60
-        if (close_hr == 24) closeTime = 0 
+        if (close_hr24 == 24) closeTime = 0
+        const open_hr = open_hr24%12
+        const close_hr = close_hr24%12
+        let closePM = false
+        if (close_hr > 12) {
+            closePM = true
+        }
+        let openPM = false
+        if (openPM > 12) {
+            openPM = true
+        }
         let o_hr = open_hr.toString()
         let o_min = open_min.toString()
         let c_hr = close_hr.toString()
         let c_min = close_min.toString()
         console.log(o_hr)
-        if (o_hr.length < 2) {
+        if (o_hr.length < 2 && openPM) {
             o_hr =  "0" + o_hr
         }
         if (o_min.length < 2) {
             o_min = "0" + o_min
         }
-        if (c_hr.length < 2) {
+        if (c_hr.length < 2 && closePM) {
             c_hr =  "0" + c_hr
         }
         if (c_min.length < 2) {
             c_min = "0" + c_min
         }
-        const res = o_hr + ":" + o_min + (open_hr < 12 ? "AM" : "PM") + " - " + c_hr + ":" + c_min + (close_hr < 12 ? "AM" : "PM")
+        const res = o_hr + ":" + o_min + (open_hr24 < 12 ? "AM" : "PM") + " - " + c_hr + ":" + c_min + (close_hr24 < 12 ? "AM" : "PM")
         return res
     }
   return (
