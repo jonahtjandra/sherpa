@@ -88,8 +88,9 @@ export const Story = () => {
       else if (toggleState === 2){
         currentHotelMarkers.forEach((marker) => marker.remove())
       }
-      else{
-
+      else if(toggleState === 1){
+        currentMarkers.forEach((marker) => marker.remove())
+        currentHotelMarkers.forEach((marker) => marker.remove())
       }
     },[toggleState])
 
@@ -135,7 +136,7 @@ export const Story = () => {
                   >
                     Hello, Overview is not fully built yet 👋
 
-                    
+
                   </div>
 
                   <div
