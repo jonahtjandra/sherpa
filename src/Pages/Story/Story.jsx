@@ -15,7 +15,7 @@ export const Story = () => {
   const [zoom, setZoom] = useState(12);
 
   const [places,setPlaces] = useState([]);
-  const [coordinates,setCoordinates] = useState({lat:0,lng:0});
+  const [coordinates,setCoordinates] = useState({lat:-99999,lng:-99999});
 
   const [currentMarkers,setCurrentMarkers] = useState([]);
   
@@ -31,6 +31,7 @@ export const Story = () => {
   // })
 
   useEffect(() => {
+    console.log(places)
     if (map.current) return; // initialize map only once
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
@@ -58,11 +59,14 @@ export const Story = () => {
       // console.log("FUCK")
       // if (currentMarkers!==null) {
         // } 
-      getPlacesData(coordinates.lat,coordinates.lng)
-          .then((data)=>{
-            // console.log(data);
-              setPlaces(data);
-          })
+      if (coordinates.lat !== -99999 && coordinates.lng !== -99999) {
+        getPlacesData(coordinates.lat,coordinates.lng)
+        .then((data)=>{
+          // console.log(data);
+            setPlaces(data);
+        })
+      }
+      
 
     }, [coordinates]);
 
@@ -113,7 +117,7 @@ export const Story = () => {
                     className={toggleState === 2 ? "content  active-content" : "content"}
                   >
                     <div className="places-container">
-                      {places.length == 0 ? "Oops, no restaurants yet. Click on the map to explore 🗺": ""}
+                      {places.length === 0 ? "Oops, no restaurants yet. Click on the map to explore 🗺": ""}
                       {places.map((place)=> {
                         if (place && place.hours && place.photo && place.num_reviews > 10) {
                           // return <img src={place.photo.images.large.url} alt="" />
@@ -151,7 +155,6 @@ export const Story = () => {
                   }
                 })}
               </div>
-              {/* <div className="story-destination">Destination Here</div> */}
             </div>
           </div>
          
