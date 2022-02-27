@@ -15,7 +15,7 @@
 
 .story-topbar {
   width: 100%;
-  height: 50px;
+  height: 20px;
   margin-bottom: 20px;
   /* background-color: whitesmoke; */
 }
@@ -110,12 +110,38 @@
   border-right: 1px solid rgba(0, 0, 0, 0.274);
 }
 
-.active-tabs {
+.active-tabs1,
+.active-tabs2,
+.active-tabs3 {
   background: white;
   border-bottom: 1px solid transparent;
 }
 
-.active-tabs::before {
+.active-tabs3::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2px);
+  height: 5px;
+  background: rgb(241, 88, 88);
+}
+
+.active-tabs1::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% + 2px);
+  height: 5px;
+  background: rgb(206, 206, 206);
+}
+
+.active-tabs2::before {
   content: "";
   display: block;
   position: absolute;

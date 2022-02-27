@@ -1,0 +1,30 @@
+.hotel {
+    height: 420px;
+    width: 300px;
+    border-bottom: solid;
+    margin: auto;
+  }
+  
+  .rating,
+  .ranking,
+  .reviews,
+  .business-hours {
+    font-size: 12px;
+  }
+  
+  ul {
+    padding-left: 0;
+  }
+  
+  .hotel-name {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  
+  .img {
+    height: 200px;
+    width: 250px;
+    object-fit: cover;
+  }
+  
+  
