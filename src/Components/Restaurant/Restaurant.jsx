@@ -41,7 +41,6 @@ export const Restaurant = (props) => {
     }
 
     function addRestaurant() {
-        console.log(props.image)
         let hours = []
         let weeks = ["Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday", "Sunday"]
         for (let i = 0; i < 7; ++i) {

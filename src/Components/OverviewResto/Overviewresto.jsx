@@ -1,4 +1,5 @@
 import React from 'react'
+import { deleteMarkersData } from '../../services/deleteMarkers'
 import './Overviewresto.css'
 
 export const Overviewresto = (props) => {
@@ -38,8 +39,37 @@ export const Overviewresto = (props) => {
         const res = o_hr + ":" + o_min + (open_hr24 < 12 ? "AM" : "PM") + " - " + c_hr + ":" + c_min + (close_hr24 < 12 ? "AM" : "PM")
         return res
     }
+
+    // function addRestaurant() {
+    //     let hours = []
+    //     let weeks = ["Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday", "Sunday"]
+    //     for (let i = 0; i < 7; ++i) {
+    //         hours.push(props.hours[0] && props.hours[0].length != 0 ? `${weeks[i]}: ${getHours(props.hours[0][0].open_time, props.hours[0][0].close_time)}` : `${weeks[i]}: Closed`)
+    //     }
+    //     postMarker({
+    //         "imageUrl": props.image,
+    //         "hours": hours,
+    //         "title": props.name,
+    //         "desc": "no description for now",
+    //         "ranking": props.ranking,
+    //         "lat": props.lat,
+    //         "long": props.lng,
+    //         "phone": props.phone,
+    //         "rating": props.rating,
+    //         "reviews": props.reviews
+    //     })
+    // }
+    // props.addChange()
+
+    function delRestaurant(){
+        deleteMarkersData(props.id);
+    }
+
   return (
     <div className="overview">
+        <div className="del-btn-overview" onClick={()=>delRestaurant()}>
+            Del
+        </div>
         <div className="restaurant-name">{props.name}</div>
         <img src={props.image} alt="" className="img" />
         <div className="rating">Rating: {props.rating}</div>
