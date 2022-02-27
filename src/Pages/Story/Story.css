@@ -156,7 +156,7 @@
   transform: translateX(-50%);
   width: calc(100% + 2px);
   height: 5px;
-  background: rgb(206, 206, 206);
+  background: rgb(0, 0, 0);
 }
 
 .active-tabs2::before {
