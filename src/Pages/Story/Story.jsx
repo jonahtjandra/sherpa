@@ -7,6 +7,9 @@ import { Restaurant } from '../../Components/Restaurant/Restaurant';
 import { Hotels } from '../../Components/Hotels/Hotels';
 import {getPlacesData} from '../../services/getResto.js';
 import { getHotelsData } from '../../services/getHotels.js';
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+
+
 
 export const Story = () => {
   mapboxgl.accessToken = 'pk.eyJ1Ijoiam9uYWh0amFuZHJhIiwiYSI6ImNsMDF2Z2ZmazB5NWgzYmxzNG1iaHZ1YWoifQ.JqWDrSROl2qsQK2WQrFXxw';
@@ -22,6 +25,7 @@ export const Story = () => {
 
   const [currentMarkers,setCurrentMarkers] = useState([]);
   const [currentHotelMarkers,serCurrentHotelMarkers] = useState([]);
+  const [currentUserMarkers,setCurrentUserMarkers] = useState([]);
   
   // tab logic
   const [toggleState, setToggleState] = useState(1);
@@ -43,8 +47,15 @@ export const Story = () => {
         center: [lng, lat],
         zoom: zoom
       });
-    });
 
+      const geocoder =
+        new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+       });
+
+      document.getElementById('geocoder').appendChild(geocoder.onAdd(map.current));
+    });
 
 
     useEffect(() => {
@@ -96,8 +107,9 @@ export const Story = () => {
       else if (toggleState === 2){
         currentHotelMarkers.forEach((marker) => marker.remove())
       }
-      else{
-
+      else if(toggleState === 1){
+        currentMarkers.forEach((marker) => marker.remove())
+        currentHotelMarkers.forEach((marker) => marker.remove())
       }
     },[toggleState])
 
@@ -110,7 +122,7 @@ export const Story = () => {
             <div className="story-topbar">
 
             </div>
-            <input placeholder='find anything you want' className="search-story" />
+            <div id="geocoder"/>
             <div className="boxView">
               <input placeholder='title here' className="story-destination" />
               
@@ -142,8 +154,8 @@ export const Story = () => {
                     className={toggleState === 1 ? "content  active-content" : "content"}
                   >
                     Hello, Overview is not fully built yet 👋
-
                     
+
                   </div>
 
                   <div
@@ -155,7 +167,7 @@ export const Story = () => {
                         if (resto && resto.hours && resto.photo && resto.num_reviews > 10 && resto.longitude && resto.latitude) {
                           // return <img src={place.photo.images.large.url} alt="" />
                           const marker = new mapboxgl.Marker({
-                            color: "#0000FF"
+                            color: "#F94144"
                           })
                           marker.setLngLat([resto.longitude, resto.latitude])
                           marker.setPopup(new mapboxgl.Popup().setHTML(resto.name));
@@ -183,7 +195,7 @@ export const Story = () => {
                         if (hotel && hotel.photo && hotel.num_reviews > 10 && hotel.longitude && hotel.latitude) {
                           // return <img src={place.photo.images.large.url} alt="" />
                           const markerhotel = new mapboxgl.Marker({
-                            color: "#FF0000"
+                            color: "#43AA8B"
                           })
                           markerhotel.setLngLat([hotel.longitude, hotel.latitude])
                           markerhotel.setPopup(new mapboxgl.Popup().setHTML(hotel.name));
@@ -192,10 +204,6 @@ export const Story = () => {
                           let newhotelmarkers = currentHotelMarkers;
                           newhotelmarkers.push(markerhotel);
                           markerhotel.getElement().addEventListener('click', (e) => { markerhotel.togglePopup(); e.stopPropagation(); }, false);
-                          // console.log(currentMarkers);
-
-                          
-                          // setCurrentMarkers(newmarkers);
 
                           return <Hotels name={hotel.name} image={hotel.photo.images.large.url} rating={hotel.rating} reviews={hotel.num_reviews} ranking={hotel.ranking} alt="" /> 
                         }

@@ -20,7 +20,26 @@
   /* background-color: whitesmoke; */
 }
 
-.search-story {
+.mapboxgl-ctrl {
+  border-radius: 10px;
+  width: 400px;
+  border: none;
+  border-width: 0;
+  outline: none;
+  margin-left: 135px;
+  transform: translate(5px,-20px);
+}
+
+.mapboxgl-ctrl:focus {
+  border-radius: 10px;
+  width: 300px;
+  border: none;
+  border-width: 0;
+  outline: none;
+
+}
+
+.geocoder {
   border: solid;
   border-width: 0.5px;
   border-radius: 40px;
@@ -150,7 +169,7 @@
   transform: translateX(-50%);
   width: calc(100% + 2px);
   height: 5px;
-  background: rgb(88, 147, 241);
+  background: rgb(88, 241, 231);
 }
 
 button {

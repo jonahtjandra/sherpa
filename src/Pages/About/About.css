@@ -4,10 +4,13 @@
   overflow-y: hidden;
   /* transform: translate(0px, -15px); */
   position: relative;
+  top: 0px;
+  transform: translate(0, -5vh);
+  background-color: #ede0d4;
 }
 
 .japan-container {
-  transform: translate(0, -45vh);
+  /* transform: translate(0, -45vh); */
   display: flex;
   height: 100vh;
   align-items: center;
@@ -16,17 +19,16 @@
 
 .about_text1 {
   top: 0px;
-  right: 0px;
   width: 50vw;
   padding: 2.5% 2.5% 2.5% 2.5% ;
 
   line-height: 175%;
-  text-align: left;
+  text-align: right;
   font-weight: 600;
   font-size: 35px;
   transform: translate(47vw, -50vh);
 
-  color: white;
+  color: #ede0d4;
   background-color: rgba(0, 0, 0, 0.7);
   border-radius: 5px;
   ;
@@ -37,18 +39,70 @@
   width: 50vw;
   top: 0px;
   padding: 2.5% 2.5% 2.5% 2.5% ;
+
+  /* transform: translate(0, -10vh); */
+
   line-height: 175%;
   text-align: left;
   font-weight: 600;
-  font-size: 25px;
+  font-size: 35px;
+
   color: black;
   margin-left: 5vw;
 }
 
+/* all other browsers */
+@keyframes spinner {
+  from {
+    /* -moz-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+    transform: rotateY(0deg); */
+
+    -moz-transform: rotate3d(0, 0, 0, 0deg);
+    -ms-transform: rotate3d(0, 0, 0, 0deg);
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+  to {
+    /* -moz-transform: rotateY(-360deg);
+    -ms-transform: rotateY(-360deg);
+    transform: rotateY(-360deg); */
+
+    -moz-transform: rotate3d(0.03, 1, 0.03, -360deg);
+    -ms-transform: rotate3d(0.03, 1, 0.03, -360deg);
+    transform: rotate3d(0.03, 1, 0.03, -360deg);
+  }
+}
+
+#stage {
+  margin: 1em auto;
+  -webkit-perspective: 1200px;
+  -moz-perspective: 1200px;
+  -ms-perspective: 1200px;
+  perspective: 1200px;
+}
+
+#spinner {
+  -webkit-animation-name: spinner;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-duration: 13s;
+
+  animation-name: spinner;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 13s;
+
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+
 .story_demo {
-  height: 85vh;
+  height: 75vh;
   top: 0px;
-  margin-left: 5vw;
+  margin-left: 3vw;
   border-radius: 5%;
   transform: skew(-5deg, 5deg);
   width: auto;

@@ -21,7 +21,7 @@ export const getPlacesData = async(lat,lng) => {
           params: {
             latitude: lat,
             longitude: lng,
-            limit: '15'
+            limit: '30'
           },
           headers: {
             'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',

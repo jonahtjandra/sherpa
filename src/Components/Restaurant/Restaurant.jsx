@@ -40,6 +40,8 @@ export const Restaurant = (props) => {
     }
   return (
     <div className="restaurant">
+        <div className="add-btn">
+        </div>
         <div className="restaurant-name">{props.name}</div>
         <img src={props.image} alt="" className="img" />
         <div className="rating">Rating: {props.rating}</div>
