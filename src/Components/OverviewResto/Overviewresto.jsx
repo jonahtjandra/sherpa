@@ -1,7 +1,7 @@
 import React from 'react'
-import './Restaurant.css'
+import './Overviewresto.css'
 
-export const Restaurant = (props) => {
+export const Overviewresto = (props) => {
     function getHours(openTime, closeTime) {
         const open_hr24 = Math.floor(openTime/60) % 24
         const open_min = (openTime/60 - Math.floor(openTime/60))*60

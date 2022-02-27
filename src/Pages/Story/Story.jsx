@@ -8,6 +8,9 @@ import { Hotels } from '../../Components/Hotels/Hotels';
 import {getPlacesData} from '../../services/getResto.js';
 import { getHotelsData } from '../../services/getHotels.js';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+import { getMarkersData } from '../../services/getMarkers.js';
+import { Overviewresto } from '../../Components/OverviewResto/Overviewresto';
+
 
 
 
@@ -21,11 +24,13 @@ export const Story = () => {
 
   const [resto,setResto] = useState([]);
   const [hotel,setHotels] = useState([]);
+  const [savedMarker,setSavedMarker] = useState([]);
   const [coordinates,setCoordinates] = useState({lat:0,lng:0});
 
   const [currentMarkers,setCurrentMarkers] = useState([]);
   const [currentHotelMarkers,serCurrentHotelMarkers] = useState([]);
   const [currentUserMarkers,setCurrentUserMarkers] = useState([]);
+  
   
   // tab logic
   const [toggleState, setToggleState] = useState(1);
@@ -56,14 +61,11 @@ export const Story = () => {
       document.getElementById('geocoder').appendChild(geocoder.onAdd(map.current));
     });
 
-
     useEffect(() => {
       if (!map.current) return; // wait for map to initialize
         map.current.on('click', (e) => {
           setCoordinates({lat:e.lngLat.lat,lng:e.lngLat.lng});
-        
         });
-        
       },[]);
 
     useEffect(() => {
@@ -92,6 +94,8 @@ export const Story = () => {
 
     }, [coordinates]);
 
+
+
     useEffect(() =>{
       if(toggleState === 3){
         currentMarkers.forEach((marker) => marker.remove())
@@ -105,9 +109,18 @@ export const Story = () => {
       }
     },[toggleState])
 
+    useEffect(() =>{
+      getMarkersData()
+      .then((data)=>{
+        setSavedMarker(data);
+     })
+    },[])
+    
+
   return (
     <div className="story">
       <Topbar/>
+
       <div className="story-wrapper">
           <div ref={mapContainer} className="map-container" />
           <div className="story-right-wrapper">
@@ -145,9 +158,44 @@ export const Story = () => {
                   <div
                     className={toggleState === 1 ? "content  active-content" : "content"}
                   >
-                    Hello, Overview is not fully built yet 👋
-                    
+                    {savedMarker.data?.map((saved)=>{
+                        if(saved && saved.hours && saved.contact){
+                          const marker = new mapboxgl.Marker({
+                            color: "#6a0dad"
+                          })
+                          marker.setLngLat([saved.long, saved.lat])
+                          marker.setPopup(new mapboxgl.Popup().setHTML(saved.name));
+                          marker.addTo(map.current);
 
+                          let newmarkers = currentUserMarkers;
+                          newmarkers.push(marker);
+                          marker.getElement().addEventListener('click', (e) => { marker.togglePopup(); e.stopPropagation(); }, false);
+                          // console.log(currentMarkers);
+                          
+                          // setCurrentMarkers(newmarkers);
+
+                          return <Overviewresto hours={saved.hours} name={saved.name} image={saved.imageUrl} rating={saved.rating} reviews={saved.num_reviews} ranking={saved.ranking} phone={saved.phone} alt="" /> 
+                          }
+                        
+                        else {
+                          const marker = new mapboxgl.Marker({
+                            color: "#6a0dad"
+                          })
+                          marker.setLngLat([saved.long, saved.lat])
+                          marker.setPopup(new mapboxgl.Popup().setHTML(saved.name));
+                          marker.addTo(map.current);
+
+                          let newmarkers = currentUserMarkers;
+                          newmarkers.push(marker);
+                          marker.getElement().addEventListener('click', (e) => { marker.togglePopup(); e.stopPropagation(); }, false);
+                          // console.log(currentMarkers);
+                         
+                          // setCurrentMarkers(newmarkers);
+
+                          return <Hotels name={saved.name} image={saved.imageUrl} ranking={saved.ranking} rating={saved.rating} alt="" /> 
+                        }
+                    })}
+                    
                   </div>
 
                   <div
