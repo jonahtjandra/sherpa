@@ -105,7 +105,7 @@ export const Story = () => {
           })
       }
 
-    }, [coordinates]);
+    }, [coordinates, proxy]);
 
 
 
@@ -128,7 +128,7 @@ export const Story = () => {
       .then((data)=>{
         setSavedMarker(data);
      })
-    },[toggleState])
+    },[toggleState, proxy])
     
 
     function renderProxy() {
@@ -244,7 +244,7 @@ export const Story = () => {
                           
                           // setCurrentMarkers(newmarkers);
 
-                          return <Restaurant  lat={resto.latitude} lng={resto.longitude} hours={resto.hours.week_ranges} name={resto.name} image={resto.photo.images.large.url} rating={resto.rating} reviews={resto.num_reviews} ranking={resto.ranking} phone={resto.phone} alt="" /> 
+                          return <Restaurant lat={resto.latitude} lng={resto.longitude} hours={resto.hours.week_ranges} name={resto.name} image={resto.photo.images.large.url} rating={resto.rating} reviews={resto.num_reviews} ranking={resto.ranking} phone={resto.phone} alt="" /> 
                         }
                       })}
                     </div>

@@ -25,7 +25,7 @@ export const getHotelsData = async(lat,lng) => {
           },
           headers: {
             'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-            'x-rapidapi-key': '288923edc8msh5e8fadabed7a2f5p136e3ejsned0ca0eae261'
+            'x-rapidapi-key': 'a54a0ff026msh898d2476bccc3aap1f5d92jsn60a3ace729f3'
           }
         });
         return data;

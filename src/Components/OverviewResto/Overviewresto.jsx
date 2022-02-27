@@ -61,10 +61,10 @@ export const Overviewresto = (props) => {
     // }
     // props.addChange()
 
-    function delRestaurant(){
-        deleteMarkersData(props.id);
-        const render = props.render
-        render()
+    async function delRestaurant() {
+        const res = await deleteMarkersData(props.id);
+        const ren = props.render
+        ren()
     }
 
   return (
