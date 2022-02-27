@@ -1,16 +1,22 @@
 import axios from 'axios';
 
-const URL= 'https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng'
+const URL= 'http://localhost:8080/api/pins/'
 
 export const postMarker = async(marker) => {
     try {
-        const {data: {data}} = await axios.get(URL,{
-          params: marker,
-          headers: {
-            'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-            'x-rapidapi-key': 'https://sherpa-backend-ajiiv.ondigitalocean.app/api/pins/'
-          }
+        console.log(marker)
+        const {data: {data}} = await axios.post(URL,{ 
+            imageUrl: marker.imageUrl,
+            hours: marker.hours,
+            title: marker.title,
+            desc: marker.desc,
+            ranking: marker.ranking,
+            lat: marker.lat,
+            long: marker.long,
+            rating: marker.rating,
+            reviews: marker.reviews
         });
+        console.log(data)
         return data;
 
     } catch (error){

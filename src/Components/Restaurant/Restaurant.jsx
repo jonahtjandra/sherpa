@@ -1,4 +1,5 @@
 import React from 'react'
+import { postMarker } from '../../services/postMarkers'
 import './Restaurant.css'
 
 export const Restaurant = (props) => {
@@ -38,9 +39,33 @@ export const Restaurant = (props) => {
         const res = o_hr + ":" + o_min + (open_hr24 < 12 ? "AM" : "PM") + " - " + c_hr + ":" + c_min + (close_hr24 < 12 ? "AM" : "PM")
         return res
     }
+
+    function addRestaurant() {
+        console.log(props.image)
+        let hours = []
+        let weeks = ["Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday", "Sunday"]
+        for (let i = 0; i < 7; ++i) {
+            hours.push(props.hours[0] && props.hours[0].length != 0 ? `${weeks[i]}: ${getHours(props.hours[0][0].open_time, props.hours[0][0].close_time)}` : `${weeks[i]}: Closed`)
+        }
+        postMarker({
+            "imageUrl": props.image,
+            "hours": hours,
+            "title": props.name,
+            "desc": "no description for now",
+            "ranking": props.ranking,
+            "lat": props.lat,
+            "long": props.lng,
+            "phone": props.phone,
+            "rating": props.rating,
+            "reviews": props.reviews
+        })
+    }
+    // props.addChange()
+
   return (
     <div className="restaurant">
-        <div className="add-btn">
+        <div className="add-btn" onClick={()=>addRestaurant()}>
+            Add
         </div>
         <div className="restaurant-name">{props.name}</div>
         <img src={props.image} alt="" className="img" />

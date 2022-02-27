@@ -8,6 +8,7 @@ import { Hotels } from '../../Components/Hotels/Hotels';
 import {getPlacesData} from '../../services/getResto.js';
 import { getHotelsData } from '../../services/getHotels.js';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder'
+import { postMarker } from '../../services/postMarkers';
 
 
 
@@ -26,6 +27,7 @@ export const Story = () => {
   const [currentMarkers,setCurrentMarkers] = useState([]);
   const [currentHotelMarkers,serCurrentHotelMarkers] = useState([]);
   const [currentUserMarkers,setCurrentUserMarkers] = useState([]);
+
   
   // tab logic
   const [toggleState, setToggleState] = useState(1);
@@ -37,7 +39,6 @@ export const Story = () => {
   //     new mapboxgl.Marker(el).setLngLat(feature.geometry.coordinates).addTo(map);
   //   }
   // })
-
   useEffect(() => {
     // console.log(places)
     if (map.current) return; // initialize map only once
@@ -57,7 +58,6 @@ export const Story = () => {
       document.getElementById('geocoder').appendChild(geocoder.onAdd(map.current));
     });
 
-
     useEffect(() => {
       if (!map.current) return; // wait for map to initialize
         map.current.on('click', (e) => {
@@ -74,7 +74,10 @@ export const Story = () => {
       
       if (toggleState === 2){
         if (coordinates.lat !== -99999 && coordinates.lng !== -99999) {
-          currentMarkers.forEach((marker) => marker.remove())
+          currentMarkers.forEach((marker) => {
+            console.log("marker: " + resto)
+            marker.remove()
+          })
           currentHotelMarkers.forEach((marker) => marker.remove())
           getPlacesData(coordinates.lat,coordinates.lng)
               .then((data)=>{
@@ -181,7 +184,7 @@ export const Story = () => {
                           
                           // setCurrentMarkers(newmarkers);
 
-                          return <Restaurant hours={resto.hours.week_ranges} name={resto.name} image={resto.photo.images.large.url} rating={resto.rating} reviews={resto.num_reviews} ranking={resto.ranking} phone={resto.phone} alt="" /> 
+                          return <Restaurant lat={resto.latitude} lng={resto.longitude} hours={resto.hours.week_ranges} name={resto.name} image={resto.photo.images.large.url} rating={resto.rating} reviews={resto.num_reviews} ranking={resto.ranking} phone={resto.phone} alt="" /> 
                         }
                       })}
                     </div>

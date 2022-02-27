@@ -27,7 +27,7 @@
   border-width: 0;
   outline: none;
   margin-left: 135px;
-  transform: translate(5px,-20px);
+  transform: translate(5px, -20px);
 }
 
 .mapboxgl-ctrl:focus {
@@ -36,7 +36,6 @@
   border: none;
   border-width: 0;
   outline: none;
-
 }
 
 .geocoder {
@@ -145,7 +144,7 @@
   transform: translateX(-50%);
   width: calc(100% + 2px);
   height: 5px;
-  background: rgb(241, 88, 88);
+  background: rgb(101, 175, 147);
 }
 
 .active-tabs1::before {
@@ -169,7 +168,7 @@
   transform: translateX(-50%);
   width: calc(100% + 2px);
   height: 5px;
-  background: rgb(88, 241, 231);
+  background: rgb(255, 83, 83);
 }
 
 button {
