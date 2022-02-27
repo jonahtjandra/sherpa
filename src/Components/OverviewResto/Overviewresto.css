@@ -5,13 +5,15 @@
 }
 
 .del-btn-overview {
+  cursor: pointer;
   height: 30px;
-  width: 40px;
+  width: 70px;
   padding-left: 8px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   background-color: rgb(15, 14, 14);
+  color: white;
 }
 
 .rating,
