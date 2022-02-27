@@ -5,28 +5,24 @@
 }
 
 .bg1 {
-  right: 0px;
   position: absolute;
   height: 750px;
-  width: 90em;
+  width: 100em;
   object-fit: cover;
   
 }
 
 .girl1 {
-  right: 0px;
   position: absolute;
   height: 750px;
-  width: 90em;
+  width: 100em;
   object-fit: cover;
 }
 
 .rock1 {
-  right: 0px;
-
   position: relative;
   height: 750px;
-  width: 90em;
+  width: 100em;
   object-fit: cover;
 }
 
