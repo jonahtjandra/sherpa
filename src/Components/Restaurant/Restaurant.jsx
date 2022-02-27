@@ -58,6 +58,7 @@ export const Restaurant = (props) => {
             "rating": props.rating,
             "reviews": props.reviews
         })
+        props.render()
     }
     // props.addChange()
 

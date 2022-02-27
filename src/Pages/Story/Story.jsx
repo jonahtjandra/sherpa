@@ -234,7 +234,7 @@ export const Story = () => {
                           
                           // setCurrentMarkers(newmarkers);
 
-                          return <Restaurant lat={resto.latitude} lng={resto.longitude} hours={resto.hours.week_ranges} name={resto.name} image={resto.photo.images.large.url} rating={resto.rating} reviews={resto.num_reviews} ranking={resto.ranking} phone={resto.phone} alt="" /> 
+                          return <Restaurant render={proxyRender} lat={resto.latitude} lng={resto.longitude} hours={resto.hours.week_ranges} name={resto.name} image={resto.photo.images.large.url} rating={resto.rating} reviews={resto.num_reviews} ranking={resto.ranking} phone={resto.phone} alt="" /> 
                         }
                       })}
                     </div>
