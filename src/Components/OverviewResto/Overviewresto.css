@@ -16,6 +16,20 @@
   color: white;
 }
 
+.desc {
+  height: 100px;
+  width: 200px;
+  border-radius: 20px;
+  border: none;
+}
+
+.desc:focus {
+  height: 100px;
+  width: 300px;
+  border-radius: 20px;
+  border: none;
+}
+
 .rating,
 .ranking,
 .contact,

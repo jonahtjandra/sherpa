@@ -11,6 +11,7 @@
 .story-right-wrapper {
   height: 700px;
   width: 40%;
+  overflow-y: hidden;
 }
 
 .story-topbar {

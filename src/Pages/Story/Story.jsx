@@ -32,6 +32,7 @@ export const Story = () => {
   const [currentHotelMarkers,serCurrentHotelMarkers] = useState([]);
   const [currentUserMarkers,setCurrentUserMarkers] = useState([]);
 
+  const [proxy, setProxy] = useState(0);
   
   
   // tab logic
@@ -68,7 +69,7 @@ export const Story = () => {
         map.current.on('click', (e) => {
           setCoordinates({lat:e.lngLat.lat,lng:e.lngLat.lng});
         });
-      },[]);
+      }, []);
 
     useEffect(() => {
       // console.log("FUCK")
@@ -130,6 +131,11 @@ export const Story = () => {
     },[toggleState])
     
 
+    function renderProxy() {
+      console.log("PROXZY")
+      setProxy(proxy+1)
+    }
+
   return (
     <div className="story">
       <Topbar/>
@@ -189,7 +195,7 @@ export const Story = () => {
                           
                           // setCurrentMarkers(newmarkers);
                             console.log(saved._id);
-                          return <Overviewresto hours={saved.hours} name={saved.title} image={saved.imageUrl} rating={saved.rating} reviews={saved.reviews} ranking={saved.ranking} phone={saved.phone} id = {saved._id} alt="" /> 
+                          return <Overviewresto render={renderProxy} hours={saved.hours} name={saved.title} image={saved.imageUrl} rating={saved.rating} reviews={saved.reviews} ranking={saved.ranking} phone={saved.phone} id = {saved._id} alt="" /> 
                         }
                         
                         else {

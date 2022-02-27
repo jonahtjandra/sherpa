@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const URL= 'http://localhost:8080/api/pins/'
+const URL= 'https://sherpa-backend-ajiiv.ondigitalocean.app/api/pins/'
 
 export const postMarker = async(marker) => {
     try {

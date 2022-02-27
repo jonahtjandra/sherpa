@@ -63,6 +63,8 @@ export const Overviewresto = (props) => {
 
     function delRestaurant(){
         deleteMarkersData(props.id);
+        const render = props.render
+        render()
     }
 
   return (
@@ -99,6 +101,7 @@ export const Overviewresto = (props) => {
                 {props.hours[6]}
             </li>
         </ul>
+        <input type="text" className="desc" />
     </div>
   )
 }
