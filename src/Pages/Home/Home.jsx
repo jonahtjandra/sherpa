@@ -18,12 +18,14 @@ export const Home = () => {
     <div className="home">
       <div className="img-wrapper">
         <div className="parallax-container">
+
           <img src="/parallax_bg/bg1.png" alt="" className='bg1' style={{ transform: `translateY(${0.5 * offsetY}px)` }} />
-          <img src="/parallax_bg/girl1.png" alt="" className='girl1' style={{ transform: `translateY(${-10 + (0.6 * offsetY)}px)` }} />
           <img src="/parallax_bg/rock1.png" alt="" className='rock1' style={{ transform: `translateY(${-20 + (0.7 * offsetY)}px)` }} />
+
+          <img src="/parallax_bg/girl1.png" alt="" className='girl1' style={{ transform: `translateY(${-10 + (0.6 * offsetY)}px)` }} />
+
         </div>
 
-        {/* <img src="bg-light.jpg" className="title-img" /> */}
         <div className="title">Write your next story.</div>
       </div>
     </div>

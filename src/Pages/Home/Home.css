@@ -5,6 +5,7 @@
 }
 
 .bg1 {
+  right: 0px;
   position: absolute;
   height: 750px;
   width: 90em;
@@ -13,6 +14,7 @@
 }
 
 .girl1 {
+  right: 0px;
   position: absolute;
   height: 750px;
   width: 90em;
@@ -20,11 +22,14 @@
 }
 
 .rock1 {
+  right: 0px;
+
   position: relative;
   height: 750px;
   width: 90em;
   object-fit: cover;
 }
+
 
 .title {
   font-weight: 600;
