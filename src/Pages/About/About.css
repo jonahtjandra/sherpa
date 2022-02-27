@@ -1,5 +1,5 @@
 .About {
-  height: 500vh;
+  height: 320vh;
   /* background-color: #14213d; */
   overflow-y: hidden;
   /* transform: translate(0px, -15px); */
@@ -114,4 +114,69 @@
 
 .logo-container {
   margin-left: 50%;
+}
+
+#rendy {
+  transform: translate(7vw, -25vh);
+}
+
+#jonah {
+  transform: translate(12vw, -25vh);
+}
+
+#allen {
+  transform: translate(17vw, -25vh);
+}
+
+.aboutme {
+  object-fit: cover;
+  height: 25vw;
+  width: 25vw;
+  border-radius: 100%;
+}
+
+.aboutme_text {
+  display: flex;
+  transform: translate(0px, -25vh);
+}
+
+.aboutme_child_text {
+  width: 25vw;
+  font-weight: 600;
+  font-size: 35px;
+  color: black;
+}
+
+.aboutus_header {
+  font-weight: 600;
+  font-size: 80px;
+  transform: translate(0px, 0vh);
+}
+
+.llama_wrapper {
+  align-items: center;
+}
+
+.llama {
+  object-fit: cover;
+  width: 60vw;
+  height: 75vh;
+  border-radius: 25px;
+  transform: translate(-15vw, -55vh);
+}
+
+.start_writing {
+  transform: translate(73vw, -95vh);
+  font-weight: 600;
+  font-size: 40px;
+  background-color: #3a86ff;
+  object-fit: cover;
+  width: 20vw;
+  padding: 10px;
+  border-radius: 50px;
+}
+
+.start_writing:hover {
+  background-color: rgba(58, 134, 255, 0.75);
+  /* background-color: rgb(232, 213, 178); */
 }
