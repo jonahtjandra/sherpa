@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 export const About = () => {
   const [offsetY, setOffsetY] = useState(0)
+  const yChange = offsetY
   const handleScroll = () => {
     if (window.pageYOffset < 100) {
       return
@@ -16,12 +17,14 @@ export const About = () => {
   return (
     <div className='About' /*style={{ transform: `translateY(${-0.5 * offsetY}px)` }}*/>
       <div className="japan-container" >
-        <p className='about_text2'>You can plan the perfect story on one platform and decide if you want to share your story as a guide to the rest of the world 🌎 later on.</p>
-        <img src="japan.webp" alt="" className='story_demo' />
+        <p className='about_text2'>We believe each trip is a new story. At Sherpa, we are creating a place for you to write your next one.</p>
+        <div id="stage" >
+          <img src="japan.webp" alt="" id="spinner" className='story_demo' />
+        </div>
       </div>
 
-      <img src="fireworks.jpg" alt="" className='img1' />
-      <p className='about_text1' style={{ right: `${0}px`, transform: `translateY(${400 - 0.5 * offsetY}px)` }}>We believe trips are best experienced in stories. At Sherpa we are creating a place for you to find your next adventure.</p>
+      <img src="fireworks.jpg" alt="" className='img1' style={{ transform: `translateY(${450 - 0.45 * yChange}px)` }} />
+      <p className='about_text1' style={{ right: `${0}px`, transform: `translate(${45}vw, ${350 - 0.65 * yChange}px)` }}>Plan the perfect adventure on one platform and share it with the world 🌎.</p>
 
       {/* 
       <div className="japan-container">
