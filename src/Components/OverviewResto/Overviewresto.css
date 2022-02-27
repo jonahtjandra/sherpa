@@ -1,5 +1,5 @@
 .overview {
-  height: 500px;
+  height: 600px;
   width: 300px;
   margin: auto;
 }
@@ -17,10 +17,12 @@
 }
 
 .desc {
+  font-family: "Raleway", sans-serif;
   height: 100px;
   width: 200px;
-  border-radius: 20px;
   border: none;
+  font-weight: 500;
+  overflow-y: auto;
 }
 
 .desc:focus {
@@ -28,6 +30,7 @@
   width: 300px;
   border-radius: 20px;
   border: none;
+  outline: none;
 }
 
 .rating,

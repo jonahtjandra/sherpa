@@ -101,7 +101,7 @@ export const Overviewresto = (props) => {
                 {props.hours[6]}
             </li>
         </ul>
-        <input type="text" className="desc" />
+        <textarea className="desc" rows="20" cols="50">Write here ✍️: </textarea>
     </div>
   )
 }
