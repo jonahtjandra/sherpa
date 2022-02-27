@@ -14,7 +14,8 @@ export const postMarker = async(marker) => {
             lat: marker.lat,
             long: marker.long,
             rating: marker.rating,
-            reviews: marker.reviews
+            reviews: marker.reviews,
+            phone: marker.phone
         });
         console.log(data)
         return data;

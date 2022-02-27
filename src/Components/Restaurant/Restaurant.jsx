@@ -41,15 +41,10 @@ export const Restaurant = (props) => {
     }
 
     function addRestaurant() {
-        console.log(props.image)
-        let hours = []
-        let weeks = ["Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday", "Sunday"]
-        for (let i = 0; i < 7; ++i) {
-            hours.push(props.hours[0] && props.hours[0].length != 0 ? `${weeks[i]}: ${getHours(props.hours[0][0].open_time, props.hours[0][0].close_time)}` : `${weeks[i]}: Closed`)
-        }
+        console.log(props.hours)
         postMarker({
             "imageUrl": props.image,
-            "hours": hours,
+            "hours": props.hours,
             "title": props.name,
             "desc": "no description for now",
             "ranking": props.ranking,

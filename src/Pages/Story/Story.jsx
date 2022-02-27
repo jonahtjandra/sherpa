@@ -170,6 +170,7 @@ export const Story = () => {
                   <div
                     className={toggleState === 1 ? "content  active-content" : "content"}
                   >
+                    <div className="places-container">
                     {savedMarker.data?.map((saved)=>{
                         if(saved && saved.hours && saved.contact){
                           const marker = new mapboxgl.Marker({
@@ -207,6 +208,8 @@ export const Story = () => {
                           return <Hotels name={saved.name} image={saved.imageUrl} ranking={saved.ranking} rating={saved.rating} alt="" /> 
                         }
                     })}
+                    </div>
+                    
                     
                   </div>
 
@@ -256,8 +259,7 @@ export const Story = () => {
                           let newhotelmarkers = currentHotelMarkers;
                           newhotelmarkers.push(markerhotel);
                           markerhotel.getElement().addEventListener('click', (e) => { markerhotel.togglePopup(); e.stopPropagation(); }, false);
-
-                          return <Hotels name={hotel.name} image={hotel.photo.images.large.url} rating={hotel.rating} reviews={hotel.num_reviews} ranking={hotel.ranking} alt="" /> 
+                          return <Hotels lat={hotel.latitude} long={hotel.longitude} name={hotel.name} image={hotel.photo.images.large.url} rating={hotel.rating} reviews={hotel.num_reviews} ranking={hotel.ranking} alt="" /> 
                         }
                       })}
                     </div>
