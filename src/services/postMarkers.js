@@ -5,7 +5,7 @@ const URL= 'http://localhost:8080/api/pins/'
 export const postMarker = async(marker) => {
     try {
         console.log(marker)
-        const {data: {data}} = await axios.post(URL,{ 
+        const {data: {data}} = await axios.post(URL,{
             imageUrl: marker.imageUrl,
             hours: marker.hours,
             title: marker.title,
@@ -17,7 +17,6 @@ export const postMarker = async(marker) => {
             reviews: marker.reviews,
             phone: marker.phone
         });
-        console.log(data)
         return data;
 
     } catch (error){

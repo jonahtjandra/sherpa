@@ -1,4 +1,5 @@
 import React from 'react'
+import { deleteMarkersData } from '../../services/deleteMarkers'
 import './Overviewresto.css'
 
 export const Overviewresto = (props) => {
@@ -38,8 +39,37 @@ export const Overviewresto = (props) => {
         const res = o_hr + ":" + o_min + (open_hr24 < 12 ? "AM" : "PM") + " - " + c_hr + ":" + c_min + (close_hr24 < 12 ? "AM" : "PM")
         return res
     }
+
+    // function addRestaurant() {
+    //     let hours = []
+    //     let weeks = ["Monday", "Tuesday", "Wednessday", "Thursday", "Friday", "Saturday", "Sunday"]
+    //     for (let i = 0; i < 7; ++i) {
+    //         hours.push(props.hours[0] && props.hours[0].length != 0 ? `${weeks[i]}: ${getHours(props.hours[0][0].open_time, props.hours[0][0].close_time)}` : `${weeks[i]}: Closed`)
+    //     }
+    //     postMarker({
+    //         "imageUrl": props.image,
+    //         "hours": hours,
+    //         "title": props.name,
+    //         "desc": "no description for now",
+    //         "ranking": props.ranking,
+    //         "lat": props.lat,
+    //         "long": props.lng,
+    //         "phone": props.phone,
+    //         "rating": props.rating,
+    //         "reviews": props.reviews
+    //     })
+    // }
+    // props.addChange()
+
+    function delRestaurant(){
+        deleteMarkersData(props.id);
+    }
+
   return (
     <div className="overview">
+        <div className="del-btn-overview" onClick={()=>delRestaurant()}>
+            Remove
+        </div>
         <div className="restaurant-name">{props.name}</div>
         <img src={props.image} alt="" className="img" />
         <div className="rating">Rating: {props.rating}</div>
@@ -48,25 +78,25 @@ export const Overviewresto = (props) => {
         <div className="reviews">Number of reviews: {props.reviews}</div>
         <ul className="business-hours">
             <li className="hours">
-                {props.hours[0] && props.hours[0].length != 0 ? `Monday: ${getHours(props.hours[0][0].open_time, props.hours[0][0].close_time)}` : "Monday: Closed"}
+                {props.hours[0]}
             </li>
             <li className="hours">
-                {props.hours[1] && props.hours[1].length != 0 ? `Tuesday: ${getHours(props.hours[1][0].open_time, props.hours[1][0].close_time)}`: "Tuesday: Closed"}
+                {props.hours[1]}
             </li>
             <li className="hours">
-                {props.hours[2] && props.hours[2].length != 0 ? `Wednessday: ${getHours(props.hours[2][0].open_time, props.hours[2][0].close_time)}`: "Wednessday: Closed"}
+                {props.hours[2]}
             </li>
             <li className="hours">
-                {props.hours[3] && props.hours[3].length != 0 ? `Thursday: ${getHours(props.hours[3][0].open_time, props.hours[3][0].close_time)}`: "Thursday: Closed"}
+                {props.hours[3]}
             </li>
             <li className="hours">
-                {props.hours[4] && props.hours[4].length != 0 ? `Friday: ${getHours(props.hours[4][0].open_time, props.hours[4][0].close_time)}`: "Friday: Closed"}
+                {props.hours[4]}
             </li>
             <li className="hours">
-                {props.hours[5] && props.hours[5].length != 0 ? `Saturday: ${getHours(props.hours[5][0].open_time, props.hours[5][0].close_time)}`: "Saturday: Closed"}
+                {props.hours[5]}
             </li>
             <li className="hours">
-                {props.hours[6] && props.hours[6].length != 0 ? `Sunday: ${getHours(props.hours[6][0].open_time, props.hours[6][0].close_time)}`: "Sunday: Closed"}
+                {props.hours[6]}
             </li>
         </ul>
     </div>

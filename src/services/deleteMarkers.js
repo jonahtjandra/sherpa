@@ -15,12 +15,13 @@ const URL= 'https://sherpa-backend-ajiiv.ondigitalocean.app/api/pins/'
 //   };
 
 
-export const getMarkersData = async() => {
+export const deleteMarkersData = async(identification) => {
     try {
-        const data = await axios.delete('https://sherpa-backend-ajiiv.ondigitalocean.app/api/pins/');
-        id = "" //input later
+        console.log(identification);
+        const data = await axios.delete('https://sherpa-backend-ajiiv.ondigitalocean.app/api/pins/',{data:{
+        id: identification}});
 
     } catch (error){
         console.log(error)
     }
-}
+}   

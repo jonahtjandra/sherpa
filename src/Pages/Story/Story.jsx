@@ -122,11 +122,12 @@ export const Story = () => {
     },[toggleState])
 
     useEffect(() =>{
+      currentUserMarkers.forEach((marker) => marker.remove())
       getMarkersData()
       .then((data)=>{
         setSavedMarker(data);
      })
-    },[])
+    },[toggleState])
     
 
   return (
@@ -172,7 +173,8 @@ export const Story = () => {
                   >
                     <div className="places-container">
                     {savedMarker.data?.map((saved)=>{
-                        if(saved && saved.hours && saved.contact){
+                      console.log(savedMarker)
+                        if(saved){
                           const marker = new mapboxgl.Marker({
                             color: "#000000"
                           })
@@ -186,9 +188,9 @@ export const Story = () => {
                           // console.log(currentMarkers);
                           
                           // setCurrentMarkers(newmarkers);
-
-                          return <Overviewresto hours={saved.hours} name={saved.name} image={saved.imageUrl} rating={saved.rating} reviews={saved.num_reviews} ranking={saved.ranking} phone={saved.phone} alt="" /> 
-                          }
+                            console.log(saved._id);
+                          return <Overviewresto hours={saved.hours} name={saved.title} image={saved.imageUrl} rating={saved.rating} reviews={saved.reviews} ranking={saved.ranking} phone={saved.phone} id = {saved._id} alt="" /> 
+                        }
                         
                         else {
                           const marker = new mapboxgl.Marker({
@@ -205,7 +207,7 @@ export const Story = () => {
                          
                           // setCurrentMarkers(newmarkers);
 
-                          return <Hotels name={saved.name} image={saved.imageUrl} ranking={saved.ranking} rating={saved.rating} alt="" /> 
+                          return <Hotels name={saved.name} image={saved.imageUrl} ranking={saved.ranking} reviews={saved.reviews} rating={saved.rating} alt="" /> 
                         }
                     })}
                     </div>
